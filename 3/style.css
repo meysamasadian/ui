@@ -1,0 +1,553 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+/* 
+One of the usage of universal selector is to set margin and padding set 0
+*/
+
+body {
+  font-family: sans-serif;
+  color: #444;
+  border-top: #1098ad solid 10px;
+}
+
+.main-header {
+  background-color: #f7f7f7;
+  padding: 20px 40px;
+  /* margin-bottom: 60px; */
+}
+
+article {
+  /* margin-bottom: 60px; */
+}
+
+.post-header {
+  margin-bottom: 40px;
+}
+
+h1,
+h2,
+h3 {
+  color: #1098ad;
+}
+
+h1 {
+  font-size: 26px;
+  text-transform: uppercase;
+  font-style: italic;
+}
+
+h2 {
+  font-size: 40px;
+  margin-bottom: 30px;
+}
+
+h3 {
+  font-size: 30px;
+  margin-bottom: 20px;
+  margin-top: 40px;
+}
+
+h4 {
+  font-size: 20px;
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+p {
+  font-size: 22px;
+  line-height: 1.5;
+  margin-bottom: 15px;
+}
+
+ul,
+ol {
+  margin-left: 50px;
+  margin-bottom: 20px;
+}
+
+li {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+li:last-child {
+  margin-bottom: 0px;
+}
+
+/* footer p {
+  font-size: 16px;
+} */
+
+/* article header p {
+  font-style: italic;
+} */
+
+#author {
+  font-style: italic;
+  font-size: 18px;
+}
+
+#copyright {
+  font-size: 16px;
+}
+
+.related-author {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.related {
+  list-style: none;
+  margin-left: 0px;
+}
+
+aside {
+  background-color: #f7f7f7;
+  border-top: 5px solid #1098ad;
+  border-bottom: 5px solid #1098ad;
+  padding: 50px 40px;
+}
+
+/*Psudo class*/
+
+li:first-child {
+  font-weight: bold;
+}
+
+li:last-child {
+  font-style: italic;
+}
+
+/* 
+li:nth-child(number/odd/even) {
+  font-style: italic;
+}
+*/
+
+/*
+Nothing happend as the first child of article is not p (the nature of first-child)
+As more explanation, the first child of article is not a p. instead it's a header. So 
+Bear in mind how the first child in super parent works
+*/
+/* article p:first-child {
+  color: red;
+} */
+
+/*
+On the conterray this part would work as the last element in article was indeed a P. 
+so it would apply
+*/
+/* article p:last-child {
+  color: red;
+} */
+
+/* Style links */
+/*
+The order od styling to a should be like below LVHA
+*/
+a:link {
+  color: #1098ad;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #1098ad;
+}
+
+a:hover {
+  color: orangered;
+  font-weight: bold;
+  text-decoration: underline solid orangered;
+}
+
+a:active {
+  background-color: #444;
+  font-style: italic;
+}
+
+.post-image {
+  width: 100%;
+  height: auto;
+}
+
+/* 
+Conflict between selectors
+ - Declartion marked !important
+ - Inline style
+ - ID  
+ - class or psudo class
+ - element selector
+ - universal selector
+
+ Bear in mind if an specific element has mutiple selectors, they will apply based on 
+ the priority, and conflicts will be solved, the other style will be applied, 
+ a behavior like inheritance 
+
+*/
+
+/* First */
+/* #copyright { */
+/* color: red; */
+/* } */
+
+/* Third */
+/* .copoyright { */
+/* color: #1098ad; */
+/* } */
+
+/* Second */
+/* .text { */
+/* color: #000; */
+/* } */
+
+/* 4th */
+/* footer p { */
+/* color: green !important; */
+/* } */
+
+/*
+As you can see body selector has some declarations for texts, whole text selectors 
+inherited those style.
+Note: all properties do NOT get inherited! check borders for example top-border
+As second fact we will override in child selector that change the inherted properties
+*/
+
+/*
+To apply some properties to all element:
+
+* {
+  border-top: blue solid 20px
+}
+
+This's the UNIVERSAL selector
+
+Indeed, when we add any properties in universal selector will get inherited to all 
+elements, but if put them in body only some of the can be inherited like font related 
+ones that got inherited, and in opposite the border that didn't get inherited
+*/
+
+/* 
+CSS Box model
+- Content, text image and etc 
+  - can get width and height
+- Border, a line around the element still INSIDE of element
+- Padding, invisible space around the content, INSIDE of the element
+  - actually, the padding is a space between border and content
+- Margin, space OUTSIDE of the element, between elements
+- Fill Area, Area that gets filled with background color or background
+ image, this part not related to content and by padding/border can be increased
+
+
+ Final element width = left boarder + left padding + width + right padding + right boarder
+ Final element height = top boarder + top padding + height + bottom padding + bottem boarder
+
+ Collapsing margin, if two elemnets are neighber and have some marigns in their 
+ neighberhood, only the maximum one applies
+*/
+
+/* 
+How to find the center of page
+-adding a container <div>
+*/
+
+.container {
+  width: 1200px;
+  margin: 0 auto;
+}
+
+/* 
+Block-level elemnets
+- Elements are formatted visually as blocks
+- Elements occupy 100% of parant elements width, no matter the content
+- Elements are stacked vertically by default, one after another
+- The box-model applies as showed earlier
+
+like h*, p li, body, main, aside, div
+
+To convert an inline-level to a block-level with CSS, display: block
+
+INLINE elements
+- Occupies only the space necessary for its content
+- Casues no line-breaks after or before the element
+- Box modek applies in a different way: hights and widths do not apply
+- Paddings and margins are applied only horizontally (left and right)
+
+like a, strong, image, em, button
+
+To convert a block element to inline element with CSS, display: inline
+
+
+Inline-Block box elements:
+- Looks like inline from the outside, behaves like block-level on the inside
+- Occupies only content's space
+- Causes no line-breaks
+- Box model applies as showed
+
+
+To convert any element to inline-block element with CSS, display: inline-block
+
+*/
+
+/* 
+You can see this marging wont happens vertically
+but everythoing will change if you chnage the display to block
+ */
+/* nav a:link {
+  background-color: orangered;
+  margin: 20px;
+  padding: 20px;
+  display: block;
+} */
+
+/* li {
+  display: inline;
+} */
+
+nav a {
+  margin-right: 30px;
+  display: inline-block;
+}
+
+nav a:link:last-child {
+  margin-right: 0;
+}
+
+/*
+Normal flow vs Absoulute positioning
+
+Normal flow:
+- Default positioning
+- Element is "in flow"
+- Elements are simply laid out according to their order in the HTML code
+
+position: relative
+
+Absoulute positioning:
+- Element is removed from the normal flow: "out of flow"
+- No impact on surrounding elemets, might overlap them 
+- We use top, bottom, left or right to offset the elemet from its relatively
+ positioned container
+
+postion: absolute
+*/
+
+.container {
+  position: relative;
+}
+
+button {
+  font-size: 22px;
+  padding: 20px;
+  cursor: pointer;
+
+  position: absolute;
+  /* top: 50px;
+  left: 50px; */
+  bottom: 50px;
+  right: 50px;
+}
+
+/* 
+To make the absolute position work, we need to make the parent of it relative
+
+Note:
+The absolute positioning should only use for one or two elemnt on the page not all \
+items 
+*/
+
+/* 
+Psudo elements
+Bear in mind psudo element is selected by :: whereas psudo class is selected 
+by :
+*/
+
+h1::first-letter {
+  font-style: normal;
+  margin-right: 5px;
+}
+
+/* h2::first-letter {
+  font-size: 60px;
+} */
+
+/* p::first-line {
+  color: red;
+} */
+
+/* 
+Json sibling selector 
+the css rule below selects all p element just after h3, in other words they are VERY
+sibling 
+*/
+h3 + p::first-letter {
+  font-size: 30px;
+  color: #1098ad;
+}
+
+h2 {
+  position: relative;
+}
+
+h2::after {
+  content: "NEW";
+  background-color: #ffe70e;
+  color: #444;
+  font-size: 16px;
+  font-weight: bold;
+  display: inline-block;
+  padding: 5px 10px;
+  position: absolute;
+  top: -15px;
+  right: -25px;
+}
+
+/* 
+Putting the menu in center
+*/
+
+/* nav {
+  text-align: center;
+} */
+
+/* 
+MDN CSS is a good resource ro learn more
+*/
+
+/* 
+FLOATS Layout
+*/
+
+/* .author-image {
+  float: left;
+  margin-bottom: 20px;
+} */
+
+/* .author {
+  float: left;
+  margin-top: 10px;
+  margin-left: 20px;
+} */
+
+/* h1 {
+  float: left;
+}
+
+nav {
+  float: right;
+} */
+
+/* when all children of a parent are floated, we call it collapsing element
+to fix it: there are two ways:
+1.
+*/
+
+/* .clear {
+  clear: both;
+} */
+
+/* 2. */
+
+/* .clearfix::after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+article {
+  width: 824px;
+  float: left;
+}
+
+aside {
+  width: 300px;
+  float: right;
+}
+
+footer {
+  clear: both;
+} */
+
+/* Flex part */
+
+.main-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.author-box {
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.author {
+  margin-bottom: 0;
+  margin-left: 15px;
+}
+
+.related-post {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.related-link:link {
+  font-size: 17px;
+  font-weight: bold;
+  font-style: normal;
+  display: block;
+  margin-bottom: 5px;
+}
+
+.related-author {
+  margin-bottom: 0;
+  font-size: 14px;
+  font-weight: normal;
+  font-style: italic;
+}
+
+/* FLEXBOX LAYOUT */
+
+/* .row {
+  display: flex;
+  gap: 75px;
+  margin-bottom: 60px;
+  align-items: flex-start;
+}
+
+article {
+  flex: 1;
+  margin-bottom: 0;
+}
+
+aside { */
+/*         
+  DEFAULT VALUE:
+  flex-grow: 0;
+  flex-shrink: 1;
+  flex-basis: auto; 
+  */
+/* flex: 0 0 300px;
+} */
+
+/* GRID STYLE */
+.container {
+  display: grid;
+  column-gap: 70px;
+  grid-template-columns: 1fr 300px;
+  row-gap: 60px;
+  align-items: start;
+}
+
+.main-header {
+  grid-column: 1/-1;
+}
+
+footer {
+  grid-column: 1/-1;
+}
